@@ -1,12 +1,8 @@
-package chatbot;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ChatBot {
 	public ArrayList<String> profanityFilter = new ArrayList<String>();
@@ -25,13 +21,16 @@ public class ChatBot {
 			String questions = brQuestions.readLine();
 			String responses = brResponses.readLine();
 			String profanity = brProfanity.readLine();
+			
 
 			// initialize Responders
 			while (questions != null && responses != null) {
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
-
+				
 				responders.add(new Responder(q, r));
+				
+				// For next round
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}
@@ -67,41 +66,23 @@ public class ChatBot {
 				select = r;
 			}
 		}
-		if (max ==0) //if no matches are found
-			System.out.println("Sorry we dont understand you just yet! Feel free to ask another question!");
-		return select;
+		return select;	// Returns null if max==0
 	}
 
 	/*
-	 * Prints out a response onto the console.
+	 * Returns a response for chatbot object.
 	 */
-	public void respond(String input) {
+	public String respond(String input) {
 		String[] temp = input.split(" ");
 		for (String s : temp) {
 			if (profanityFilter.contains(s)) { // cusswords filter
-				System.out.println("ChatBot: Please stop cussing.");
-				return;
+				return "Please stop cussing.";
 			}
 		}
 		Responder r = getResponder(input);
-		if (r != null)
-			System.out.println("ChatBot: "+ r.respond());
+		if (r!=null) return r.respond();
+		else return "Sorry, I don't understand. I only know things about hockey and basketball."; //if no matches are found
+		
 
-	}
-
-	public static void main(String[] args) {
-		ChatBot cb = new ChatBot();
-		cb.load();
-
-		Scanner in = new Scanner(System.in);
-		System.out.println("Ask a question:");
-		String input = in.nextLine();
-		cb.respond(input);
-		while (input.toLowerCase() != "exit") {
-			input = in.nextLine();
-			cb.respond(input);
-		}
-
-		in.close();
 	}
 }
