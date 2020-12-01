@@ -1,3 +1,4 @@
+package chatbot;
 public class PorterStemmer {
 	private char[] charArray;
 	private int i, i_end, j, k;
