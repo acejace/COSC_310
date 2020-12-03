@@ -27,4 +27,4 @@ daniel|magnus|how|hard
 random|fact|rock|climbing
 #
 # Others ############################################
-*null*
+*exceptions*
