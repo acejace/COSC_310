@@ -1,4 +1,3 @@
-package chatbot;
 import java.util.ArrayList;
 
 public class Responder {
@@ -24,17 +23,19 @@ public class Responder {
 		String[] match = q.split(" ");
 		
 		// Run words through PorterStemmer
-		/*
-			String wLetterOnly = match[i].replaceAll("[^a-zA-Z ]", "");
-			char[] wordChars = wLetterOnly.toLowerCase().toCharArray();
-			
-			PorterStemmer ps = new PorterStemmer(wordChars);	// Create PorterStemmer object
-			ps.stem();	// Stemming process
-			String processedWord = ps.toString();
-			
-			match[i] = processedWord;	// Replace processed word back into match
+		if (match.length>0) {
+			for (int i=0; i<match.length; i++) {
+				String wLetterOnly = match[i].replaceAll("[^a-zA-Z ]", "");
+				char[] wordChars = wLetterOnly.toLowerCase().toCharArray();
+				
+				PorterStemmer ps = new PorterStemmer(wordChars);	// Create PorterStemmer object
+				ps.stem();	// Stemming process
+				String processedWord = ps.toString();
+				
+				if (processedWord.length()>0) match[i] = processedWord;	// Replace processed word back into match
+			}
 		}
-		*/
+		
 		// Count matches
 		for (String word : match) {
 			if (questions.contains(word)) {

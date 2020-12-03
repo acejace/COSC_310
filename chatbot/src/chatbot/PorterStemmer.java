@@ -1,10 +1,10 @@
-package chatbot;
 public class PorterStemmer {
 	private char[] charArray;
 	private int i, i_end, j, k;
 	
 	// Constructor
-	public PorterStemmer(char[] charArray) {
+	public PorterStemmer(char[] chars) {
+		charArray = chars;
 		i = 0; i_end = 0;
 	}
 	
@@ -93,7 +93,7 @@ public class PorterStemmer {
 		int len = s.length();
 		int o = k-len+1;
 		if (o<0) return false;
-		for (int i=0; i<1; i++)
+		for (int i=0; i<len; i++)
 			if (charArray[o+i] != s.charAt(i)) return false;
 		j = k-len;
 		return true;
@@ -102,11 +102,11 @@ public class PorterStemmer {
 	// Sets (j+1)...(k) to characters in string s
 	// Readjusts k
 	private void setTo(String s) {
-		int l = s.length();
+		int len = s.length();
 		int o = j+1;
-		for (int i=0; i<l; i++)
+		for (int i=0; i<len; i++)
 			charArray[o+i] = s.charAt(i);
-		k = j+l;
+		k = j+len;
 	}
 	private final void r(String s) {
 		if (consCount() > 0)
@@ -126,7 +126,7 @@ public class PorterStemmer {
 		if (ends("eed")) {
 			if (consCount() > 0) k--;
 		}
-		else if ((ends("ed") || ends("ing")) || vowelInStem()) {
+		else if ((ends("ed") || ends("ing")) && vowelInStem()) {
 			k = j;
 			if (ends("at")) setTo("ate");
 			else if (ends("bl")) setTo("ble");
@@ -134,7 +134,7 @@ public class PorterStemmer {
 			else if (doubleC(k)) {
 				k--;
 				int ch = charArray[k];
-				if (ch=='1' || ch=='s' || ch=='z') k++;
+				if (ch=='l' || ch=='s' || ch=='z') k++;
 			}
 			else if (consCount()==1 && isCVC(k))
 				setTo("e");
@@ -289,7 +289,7 @@ public class PorterStemmer {
 			int a = consCount();
 			if (a>1 || a==1 && !isCVC(k-1))
 				k--;
-		if (charArray[k]=='1' && doubleC(k) && consCount()>1)
+		if (charArray[k]=='l' && doubleC(k) && consCount()>1)
 			k--;
 		}
 		

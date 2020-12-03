@@ -1,4 +1,3 @@
-package chatbot;
 import javax.swing.SwingUtilities;
 
 public class Driver {
