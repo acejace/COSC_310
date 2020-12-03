@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class ChatBot {
 	public ArrayList<String> profanityFilter = new ArrayList<String>();
+	public Responder exceptionResponder;
 	public ArrayList<Responder> responders = new ArrayList<Responder>();
 
 	/*
@@ -19,25 +20,40 @@ public class ChatBot {
 			BufferedReader brQuestions = new BufferedReader(new FileReader("textfiles/questions.txt"));
 			BufferedReader brResponses = new BufferedReader(new FileReader("textfiles/responses.txt"));
 			BufferedReader brProfanity = new BufferedReader(new FileReader("textfiles/profanity.txt"));
-
+			
 			String questions = brQuestions.readLine();
 			String responses = brResponses.readLine();
+<<<<<<< HEAD
 			String profanity = brProfanity.readLine();
+=======
+>>>>>>> addRespondToUnhandled
 
 			// initialize Responders
 			while (questions != null && responses != null) {
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
+<<<<<<< HEAD
 				if (!q[0].contentEquals("#")) {
 
 					responders.add(new Responder(q, r));
 
 				}
 				//read next line
+=======
+				
+				responders.add(new Responder(q, r));
+				if (q[0].equals("*exceptions*")) {
+					exceptionResponder = new Responder(q,r);
+				}
+				else {
+					responders.add(new Responder(q, r));
+				}
+				// For next round
+>>>>>>> addRespondToUnhandled
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}
-
+			String profanity = brProfanity.readLine();
 			// add profanity words to arraylist
 			while (profanity != null) {
 				profanityFilter.add(profanity.toLowerCase());
@@ -86,7 +102,11 @@ public class ChatBot {
 		if (r != null)
 			return r.respond();
 		else
+<<<<<<< HEAD
 			return "Sorry, I don't understand. I only know things about hockey and basketball."; // if no matches are
+=======
+			return exceptionResponder.respond(); // if no matches are
+>>>>>>> addRespondToUnhandled
 																									// found
 
 	}
