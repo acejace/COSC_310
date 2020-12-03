@@ -23,23 +23,22 @@ public class ChatBot {
 			
 			String questions = brQuestions.readLine();
 			String responses = brResponses.readLine();
-<<<<<<< HEAD
-			String profanity = brProfanity.readLine();
-=======
->>>>>>> addRespondToUnhandled
+
+			
+
 
 			// initialize Responders
 			while (questions != null && responses != null) {
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
-<<<<<<< HEAD
+
 				if (!q[0].contentEquals("#")) {
 
 					responders.add(new Responder(q, r));
 
 				}
 				//read next line
-=======
+
 				
 				responders.add(new Responder(q, r));
 				if (q[0].equals("*exceptions*")) {
@@ -49,7 +48,7 @@ public class ChatBot {
 					responders.add(new Responder(q, r));
 				}
 				// For next round
->>>>>>> addRespondToUnhandled
+
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}
@@ -102,11 +101,8 @@ public class ChatBot {
 		if (r != null)
 			return r.respond();
 		else
-<<<<<<< HEAD
-			return "Sorry, I don't understand. I only know things about hockey and basketball."; // if no matches are
-=======
 			return exceptionResponder.respond(); // if no matches are
->>>>>>> addRespondToUnhandled
+
 																									// found
 
 	}
