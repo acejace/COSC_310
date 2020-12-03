@@ -1,4 +1,5 @@
 package chatbot;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 
 public class ChatBot {
 	public ArrayList<String> profanityFilter = new ArrayList<String>();
+	public Responder exceptionResponder;
 	public ArrayList<Responder> responders = new ArrayList<Responder>();
 
 	/*
@@ -18,11 +20,9 @@ public class ChatBot {
 			BufferedReader brQuestions = new BufferedReader(new FileReader("textfiles/questions.txt"));
 			BufferedReader brResponses = new BufferedReader(new FileReader("textfiles/responses.txt"));
 			BufferedReader brProfanity = new BufferedReader(new FileReader("textfiles/profanity.txt"));
-
+			
 			String questions = brQuestions.readLine();
 			String responses = brResponses.readLine();
-			String profanity = brProfanity.readLine();
-			
 
 			// initialize Responders
 			while (questions != null && responses != null) {
@@ -30,12 +30,17 @@ public class ChatBot {
 				String[] r = responses.split("\\|");
 				
 				responders.add(new Responder(q, r));
-				
+				if (q[0].equals("*exceptions*")) {
+					exceptionResponder = new Responder(q,r);
+				}
+				else {
+					responders.add(new Responder(q, r));
+				}
 				// For next round
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}
-
+			String profanity = brProfanity.readLine();
 			// add profanity words to arraylist
 			while (profanity != null) {
 				profanityFilter.add(profanity.toLowerCase());
@@ -67,7 +72,7 @@ public class ChatBot {
 				select = r;
 			}
 		}
-		return select;	// Returns null if max==0
+		return select; // Returns null if max==0
 	}
 
 	/*
@@ -81,9 +86,11 @@ public class ChatBot {
 			}
 		}
 		Responder r = getResponder(input);
-		if (r!=null) return r.respond();
-		else return "Sorry, I don't understand. I only know things about hockey and basketball."; //if no matches are found
-		
+		if (r != null)
+			return r.respond();
+		else
+			return exceptionResponder.respond(); // if no matches are
+																									// found
 
 	}
 }
