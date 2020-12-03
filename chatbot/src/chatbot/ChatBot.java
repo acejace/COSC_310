@@ -28,7 +28,6 @@ public class ChatBot {
 			while (questions != null && responses != null) {
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
-				System.out.println(q[0]);
 				if (!q[0].contentEquals("#")) {
 
 					responders.add(new Responder(q, r));
