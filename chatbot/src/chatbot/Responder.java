@@ -24,7 +24,7 @@ public class Responder {
 		String[] match = q.split(" ");
 		
 		// Run words through PorterStemmer
-		for (int i=0; i<match.length; i++) {
+		/*
 			String wLetterOnly = match[i].replaceAll("[^a-zA-Z ]", "");
 			char[] wordChars = wLetterOnly.toLowerCase().toCharArray();
 			
@@ -34,7 +34,7 @@ public class Responder {
 			
 			match[i] = processedWord;	// Replace processed word back into match
 		}
-		
+		*/
 		// Count matches
 		for (String word : match) {
 			if (questions.contains(word)) {
