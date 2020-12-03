@@ -100,7 +100,7 @@ public class ChatBot {
 				return "Please stop cussing.";
 			}
 		}
-		Responder r = getResponder(input);
+		Responder r = getResponder(input.toLowerCase());
 		if (r != null)
 			return r.respond();
 		else
