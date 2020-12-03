@@ -1,4 +1,5 @@
 package chatbot;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,16 +23,18 @@ public class ChatBot {
 			String questions = brQuestions.readLine();
 			String responses = brResponses.readLine();
 			String profanity = brProfanity.readLine();
-			
 
 			// initialize Responders
 			while (questions != null && responses != null) {
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
-				
-				responders.add(new Responder(q, r));
-				
-				// For next round
+				System.out.println(q[0]);
+				if (!q[0].contentEquals("#")) {
+
+					responders.add(new Responder(q, r));
+
+				}
+				//read next line
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}
@@ -67,7 +70,7 @@ public class ChatBot {
 				select = r;
 			}
 		}
-		return select;	// Returns null if max==0
+		return select; // Returns null if max==0
 	}
 
 	/*
@@ -81,9 +84,11 @@ public class ChatBot {
 			}
 		}
 		Responder r = getResponder(input);
-		if (r!=null) return r.respond();
-		else return "Sorry, I don't understand. I only know things about hockey and basketball."; //if no matches are found
-		
+		if (r != null)
+			return r.respond();
+		else
+			return "Sorry, I don't understand. I only know things about hockey and basketball."; // if no matches are
+																									// found
 
 	}
 }
