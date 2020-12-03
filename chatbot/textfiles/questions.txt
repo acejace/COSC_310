@@ -1,17 +1,23 @@
+# Basic Functionality ############################################
 hi|hello
 who|what|are|you
+#
+# Basketball Related Questions############################################
 basketball|best|team|championship
-hockey|team|best|championship
-favourite|like best|basketball|team
-favourite|like best|hockey|team
-canucks|head coach|who
-canucks|captain|who
+favourite|like|best|basketball|team|which
 random|fact|basketball
-random|fact|hockey
 when|where|nba|founded|established
+name|popular|basketball|nba|player|best
+#
+# Hockey Related ############################################
+hockey|team|best|championship
+favourite|like best|hockey|team
+canucks|coach|who
+canucks|captain|who
+random|fact|hockey
 when|where|nhl|founded|established
-best|basketball|team
 best|hockey|player|all|time
-name|popular|basketball|nba|player
 what|hockey|team|funny|interesting|name
+#
+# Others ############################################
 *null*
