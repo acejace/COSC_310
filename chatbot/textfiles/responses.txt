@@ -2,14 +2,14 @@
 Hi, how are you doing?| Hello! I'm a ChatBot here for your sport related questions!
 I'm a chatbot coded by group 12 as a project for COSC310.
 #
-# Basketball Related Reponses ############################################
+# Basketball Related Responses ############################################
 LA Lakers|Miami Heat|Toronto Raptors|Golden State
 I like the Toronto Raptors best!
 Since 1891, the standard basketball hoop stands 10 ft tall.|Basketball is the only major sport that originated strictly from the U.S.|At just 18.5 years old, Kobe Bryant was the youngest NBA player of all time.
 The NBA was founded on June 6, 1946 in New York City.
 Michael Jordan|LeBron James|Kobe Bryant|Kareem Abdul-Jabbar|Larry Bird|Magic Johnson|Tim Duncan|Shaquille O'Neal|Wilt Chamberlin|Bill Russell
 #
-# Hockey Related ############################################
+# Hockey Related Responses ############################################
 Canucks|MapleLeafs
 Canucks is my favourite.
 Travis Green
@@ -18,6 +18,13 @@ The Daur people have been playing a game similar to modern field hockey called b
 The NHL was founded on November 26, 1917 in Montreal.
 According to the NHL, it's Wayne Gretzky.
 Fussy Puckers|The Mighty Pucks|Zero Pucks Given|Zambronies|Shootin' Blanks|Mighty Drunks|Shut Your 5-hole|Tenths of a Second|Chicks with Sticks|Men with Wood
+#
+# Climbing Related Responses ############################################
+The best rock climber is debated. Many consider Alex Honnald to be the best due to his achievements.
+Adam Ondra|Chris Sharma|Ashima Shiraishi|Alex Megos|Alain Robert|Sasha DiGuilian|Daniel Woods|Tommy Caldwell|Angy Eiter
+I like Daniel Woods and Magnus Midtbo!
+Both Daniel Woods and Magnus Midtbo have climbed a 5.15b route!
+Rock climbing can burn up to 900 calories per hour!|The first artificial climbing wall was made in 1939!|There are 400 climbing facilities in the UK alone!
 #
 # Others ############################################
 I'm sorry. I don't understand.|Sorry, could you repeat yourself?|I don't get it.|I'm confused. Could you say that again?|I don't get it. What did you say?|What are you saying?
