@@ -7,10 +7,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-import net.sf.extjwnl.JWNLException;
-
 @SuppressWarnings("serial")
-public class ChatbotGUI extends JFrame {
+public class ChatbotGUI extends JFrame{
 
 	JTextArea area;
 	JTextField field;
@@ -78,13 +76,15 @@ public class ChatbotGUI extends JFrame {
 			ChatBot cb = chatbot;
 			
 			@Override
-			public void actionPerformed(ActionEvent ae)   {
+			public void actionPerformed(ActionEvent ae) {
 				String message = field.getText();
-				String reply = cb.respond(message);
+				String reply;
+				reply = cb.respond(message);
 				
 				area.append("User: "+message+"\n");
 				field.setText("");	// Reset text field				
 				area.append("Chatbot: "+reply+"\n");// Get response from Responder
+				area.append("(Enter \"TagThis\" for POS Tagging!)\n");
 			}
 		});	
 	}
