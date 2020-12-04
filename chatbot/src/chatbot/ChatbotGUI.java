@@ -47,7 +47,7 @@ public class ChatbotGUI extends JFrame{
 		add(scroll);
 		
 		add(panel,BorderLayout.SOUTH);	// Add panel to bottom
-		
+		area.append("(Enter \"TagThis\" for POS Tagging!)\n");
 		/** Create Timer **/
 		timer = new Timer(1, new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -84,7 +84,7 @@ public class ChatbotGUI extends JFrame{
 				area.append("User: "+message+"\n");
 				field.setText("");	// Reset text field				
 				area.append("Chatbot: "+reply+"\n");// Get response from Responder
-				area.append("(Enter \"TagThis\" for POS Tagging!)\n");
+				//area.append("(Enter \"TagThis\" for POS Tagging!)\n");
 			}
 		});	
 	}
