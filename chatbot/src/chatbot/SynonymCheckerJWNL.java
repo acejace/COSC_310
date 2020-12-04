@@ -46,7 +46,7 @@ public class SynonymCheckerJWNL {
 			return matches;
 
 		} catch (Exception e) {
-			System.out.println("matching verbs failed.");
+			
 		}
 		return null;
 	}
@@ -66,7 +66,7 @@ public class SynonymCheckerJWNL {
 			return matches;
 
 		} catch (Exception e) {
-			System.out.println("matching nouns failed.");
+			
 		}
 		return null;
 	}
@@ -86,7 +86,7 @@ public class SynonymCheckerJWNL {
 			return matches;
 
 		} catch (Exception e) {
-			System.out.println("matching adjs failed.");
+			
 		}
 		return null;
 	}
@@ -100,9 +100,9 @@ public class SynonymCheckerJWNL {
 			ArrayList<String> nouns = getMatchingNouns(d, input);
 			ArrayList<String> adjs = getMatchingAdjs(d, input);
 			if (verbs!=null) matches.addAll(verbs);
-			System.out.println("verbs");
+			
 			if (nouns!=null) matches.addAll(nouns);
-			System.out.println("nouns");
+			
 			if (adjs!=null) matches.addAll(adjs);
 
 	         
