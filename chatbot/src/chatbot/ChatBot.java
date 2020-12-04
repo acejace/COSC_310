@@ -101,6 +101,11 @@ public class ChatBot {
 	public String respond(String input) {
 		try {
 		String[] temp = input.split(" ");
+		
+		// Run words through PersonDetector
+		PersonDetector pd = new PersonDetector(temp);
+		pd.getPersons();	// Print persons detected in console
+		
 		for (String s : temp) {
 			// Cusswords filter
 			if (profanityFilter.contains(s)) {
