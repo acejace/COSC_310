@@ -21,46 +21,35 @@ public class Responder {
 	 * matches found Returns: count of matches to questions
 	 */
 	public int check(String q) {
-		
-		try{
+
+		try {
 			int count = 0;
-		
-		String[] match = q.split(" ");
 
-		// Run words through PorterStemmer
-		if (match.length > 0) {
-			for (int i = 0; i < match.length; i++) {
-				String wLetterOnly = match[i].replaceAll("[^a-zA-Z ]", "");
-				char[] wordChars = wLetterOnly.toLowerCase().toCharArray();
+			String[] match = q.split(" ");
 
-				PorterStemmer ps = new PorterStemmer(wordChars); // Create PorterStemmer object
-				ps.stem(); // Stemming process
-				String processedWord = ps.toString();
+			// Run words through PorterStemmer
+			if (match.length > 0) {
+				for (int i = 0; i < match.length; i++) {
+					String wLetterOnly = match[i].replaceAll("[^a-zA-Z ]", "");
+					char[] wordChars = wLetterOnly.toLowerCase().toCharArray();
 
-				if (processedWord.length() > 0)
-					match[i] = processedWord; // Replace processed word back into match
-			}
-		}
-		// Count matches
-		for (String word : match) {
-			System.out.println(word);
-			// use wordNet synonym checker to see if word == match for all recognized
-			// synonyms.
-			ArrayList<String> synonyms = SynonymCheckerJWNL.getSynonyms(word);
-			if (synonyms == null) {
-				if (questions.contains(word))
-					count++;
-			} else {
+					PorterStemmer ps = new PorterStemmer(wordChars); // Create PorterStemmer object
+					ps.stem(); // Stemming process
+					String processedWord = ps.toString();
 
-				for (String s : synonyms) {
-					if (questions.contains(s)) {
-						count++;
-						break;
-					}
+					if (processedWord.length() > 0)
+						match[i] = processedWord; // Replace processed word back into match
 				}
 			}
-		}
-		return count;} catch(Exception e) {
+			// Count matches
+			for (String word : match) {
+
+				if (questions.contains(word))
+					count++;
+
+			}
+			return count;
+		} catch (Exception e) {
 			System.out.println("Error");
 			return -1;
 		}
