@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+import net.sf.extjwnl.JWNLException;
+
 @SuppressWarnings("serial")
 public class ChatbotGUI extends JFrame {
 
@@ -76,7 +78,7 @@ public class ChatbotGUI extends JFrame {
 			ChatBot cb = chatbot;
 			
 			@Override
-			public void actionPerformed(ActionEvent ae) {
+			public void actionPerformed(ActionEvent ae)   {
 				String message = field.getText();
 				String reply = cb.respond(message);
 				
