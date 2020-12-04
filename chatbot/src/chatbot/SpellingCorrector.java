@@ -153,7 +153,7 @@ public class SpellingCorrector{
    * Sorts a map by value taken from
    * http://stackoverflow.com/questions/109383/sort-a-mapkey-value-by-values-java
    */
-  public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue( Map<K, V> map ) {
+  public <K, V extends Comparable<? super V>> Map<K, V> sortByValue( Map<K, V> map ) {
       Map<K, V> result = new LinkedHashMap<>();
       Stream<Map.Entry<K, V>> st = map.entrySet().stream();
 
@@ -165,7 +165,8 @@ public class SpellingCorrector{
   /**
    * A very simple LRU cache implementation that can be used for random data types.
    */
-  public class LruCache<A, B> extends LinkedHashMap<A, B> {
+  @SuppressWarnings("serial")
+public class LruCache<A, B> extends LinkedHashMap<A, B> {
       private final int maxEntries;
 
       public LruCache(final int maxEntries) {

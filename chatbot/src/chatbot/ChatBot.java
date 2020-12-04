@@ -21,12 +21,9 @@ public class ChatBot {
 			BufferedReader brProfanity = new BufferedReader(new FileReader("textfiles/profanity.txt"));
 			
 			String questions = brQuestions.readLine();
-			String responses = brResponses.readLine();
+			String responses = brResponses.readLine();		
 
-			
-
-
-			// initialize Responders
+			// Initialize Responders
 			while (questions != null && responses != null) {
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
@@ -77,6 +74,7 @@ public class ChatBot {
 	public Responder getResponder(String input) {
 		int max = 0;
 		Responder select = null;
+		
 		for (Responder r : responders) {
 			if (r.check(input) > max) {
 				max = r.check(input);
@@ -90,19 +88,31 @@ public class ChatBot {
 	 * Returns a response for chatbot object.
 	 */
 	public String respond(String input) {
+		try {
 		String[] temp = input.split(" ");
 		for (String s : temp) {
-			if (profanityFilter.contains(s)) { // cusswords filter
+			// Cusswords filter
+			if (profanityFilter.contains(s)) {
 				return "Please stop cussing.";
+			}
+			
+			// Check for POSTagger option
+			if (s.toLowerCase().contains("tagthis")) {
+				String response = input.replace("tagthis", "");
+				POSTagger tagger = new POSTagger(response);
+				return tagger.getPOSTags();
 			}
 		}
 		Responder r = getResponder(input.toLowerCase());
 		if (r != null)
 			return r.respond();
 		else
-			return exceptionResponder.respond(); // if no matches are
-
-																									// found
+			return exceptionResponder.respond(); // if no matches are found
+		}
+		catch (Exception e) {
+			System.out.println("Respond method error.");
+			return "I don't know what just happened. My response function broke down.";
+		}
 
 	}
 }
