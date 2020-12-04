@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChatBot {
 	public ArrayList<String> profanityFilter = new ArrayList<String>();
@@ -16,6 +17,7 @@ public class ChatBot {
 	 */
 	public void load() {
 		try {
+			System.out.println("Loading...");
 			BufferedReader brQuestions = new BufferedReader(new FileReader("textfiles/questions.txt"));
 			BufferedReader brResponses = new BufferedReader(new FileReader("textfiles/responses.txt"));
 			BufferedReader brProfanity = new BufferedReader(new FileReader("textfiles/profanity.txt"));
@@ -25,23 +27,31 @@ public class ChatBot {
 
 			// Initialize Responders
 			while (questions != null && responses != null) {
+				ArrayList<String> additionalWords = new ArrayList<>();
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
-
+				
 				if (!q[0].contentEquals("#")) {
 
 					responders.add(new Responder(q, r));
 
 				}
 				//read next line
-
 				
-				responders.add(new Responder(q, r));
+				for (String word:q) {
+					additionalWords.addAll(SynonymCheckerJWNL.getSynonyms(word));
+ 				}
+				String[] newQ = new String[additionalWords.size()];
+				for (int i=0; i<additionalWords.size();i++) {
+					newQ[i] = additionalWords.get(i);
+				}
+				
+				
 				if (q[0].equals("*exceptions*")) {
 					exceptionResponder = new Responder(q,r);
 				}
 				else {
-					responders.add(new Responder(q, r));
+					responders.add(new Responder(newQ, r));
 				}
 				// For next round
 
@@ -57,10 +67,11 @@ public class ChatBot {
 			brQuestions.close();
 			brResponses.close();
 			brProfanity.close();
+			System.out.println("Loading Complete.");
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found.");
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println("Error");
 			e.printStackTrace();
 		}
