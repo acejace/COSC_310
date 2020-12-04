@@ -47,3 +47,4 @@ Spell check is a feature used to attempt any spelling mistakes that the user ent
 - Unable to handle incorrect spellings (Eg. "hockye" isn't assumed to be the same as "hockey")
 - Doesn't utilize AI to generate "truly intelligent" responses (Eg. Unable to discuss topics outside the scope of keywords in `questions.txt`, Unable to understand humour or sarcasm)
 - Only handles pure text (ie. No links, images, emojis etc.)
+- Requires an initial load time of approximately 20 seconds
