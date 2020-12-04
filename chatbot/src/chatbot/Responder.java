@@ -1,4 +1,5 @@
 package chatbot;
+
 import java.util.ArrayList;
 
 public class Responder {
@@ -20,30 +21,49 @@ public class Responder {
 	 * matches found Returns: count of matches to questions
 	 */
 	public int check(String q) {
-		int count = 0;
-		String[] match = q.split(" ");
 		
+		try{
+			int count = 0;
+		
+		String[] match = q.split(" ");
+
 		// Run words through PorterStemmer
-		if (match.length>0) {
-			for (int i=0; i<match.length; i++) {
+		if (match.length > 0) {
+			for (int i = 0; i < match.length; i++) {
 				String wLetterOnly = match[i].replaceAll("[^a-zA-Z ]", "");
 				char[] wordChars = wLetterOnly.toLowerCase().toCharArray();
-				
-				PorterStemmer ps = new PorterStemmer(wordChars);	// Create PorterStemmer object
-				ps.stem();	// Stemming process
+
+				PorterStemmer ps = new PorterStemmer(wordChars); // Create PorterStemmer object
+				ps.stem(); // Stemming process
 				String processedWord = ps.toString();
-				
-				if (processedWord.length()>0) match[i] = processedWord;	// Replace processed word back into match
+
+				if (processedWord.length() > 0)
+					match[i] = processedWord; // Replace processed word back into match
 			}
 		}
-		
 		// Count matches
 		for (String word : match) {
-			if (questions.contains(word)) {
-				count++;
+			System.out.println(word);
+			// use wordNet synonym checker to see if word == match for all recognized
+			// synonyms.
+			ArrayList<String> synonyms = SynonymCheckerJWNL.getSynonyms(word);
+			if (synonyms == null) {
+				if (questions.contains(word))
+					count++;
+			} else {
+
+				for (String s : synonyms) {
+					if (questions.contains(s)) {
+						count++;
+						break;
+					}
+				}
 			}
 		}
-		return count;
+		return count;} catch(Exception e) {
+			System.out.println("Error");
+			return -1;
+		}
 	}
 
 	// Returns a string randomly selected from the array of responses.
@@ -52,8 +72,8 @@ public class Responder {
 		String response = responses.get(rand);
 		String temp;
 		rand = (int) (Math.random() * 3);
-		temp =  response;
-		
+		temp = response;
+
 		return temp;
 	}
 }
