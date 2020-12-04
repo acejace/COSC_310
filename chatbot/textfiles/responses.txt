@@ -1,6 +1,6 @@
 # Basic Functionality ############################################
 Hi, how are you doing?| Hello! I'm a ChatBot here for your sport related questions!
-I'm a chatbot coded by group 12 as a project for COSC310.
+I'm a chatbot coded by group 12 as a project for COSC310 designed specifically towards sports. I currently support topics on Basketball, Hockey and Climbing!
 #
 # Basketball Related Responses ############################################
 LA Lakers|Miami Heat|Toronto Raptors|Golden State
