@@ -37,18 +37,16 @@ public class ChatBot {
 					}
 					String[] newQ = new String[additionalWords.size()];
 					for (int i = 0; i < additionalWords.size(); i++) {
-						newQ[i] = additionalWords.get(i);
+						newQ[i] = additionalWords.get(i).toLowerCase();
 					}
-
+					
 					if (q[0].equals("*exceptions*")) {
 						exceptionResponder = new Responder(q, r);
 					} else {
 						responders.add(new Responder(newQ, r));
 					}
 					// For next round
-				} else {
-					System.out.println("Line contained #, skipping");
-				}
+				} 
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}

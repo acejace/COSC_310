@@ -99,6 +99,8 @@ public class SynonymCheckerJWNL {
 			ArrayList<String> verbs = getMatchingVerbs(d, input);
 			ArrayList<String> nouns = getMatchingNouns(d, input);
 			ArrayList<String> adjs = getMatchingAdjs(d, input);
+			
+			matches.add(input);
 			if (verbs!=null) matches.addAll(verbs);
 			
 			if (nouns!=null) matches.addAll(nouns);
