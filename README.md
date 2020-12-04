@@ -28,6 +28,10 @@ Our chatbot uses a simple java-based GUI for a more user-friendly experience and
 
 Topics of conversation include hockey, basketball and climbing.
 
+## Synonym Recognition
+
+Takes words retrieved from the text files, and automatically finds common synonyms for keywords with the use of JWNL api.
+
 ## Profanity Filter
 Profanity filter is a feature that recognizes when the user has entered any profanity. The program will then remind the user to stop using profanity. This feature is used to help keep the chatbot kid friendly and help with overall flow. A sample example of a reply from the chatbot when profanity is entered is “Please do not swear!”.
 
