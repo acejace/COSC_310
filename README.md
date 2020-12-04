@@ -24,21 +24,23 @@ The chatbot accepts text-based inputs from the user and matches it to the most p
 
 Our chatbot uses a simple java-based GUI for a more user-friendly experience and the ability for the user to track the recent history of the conversation.
 
-## Topics
+## Various Topics
 
 Topics of conversation include hockey, basketball and climbing.
 
+## Profanity Filter
+Profanity filter is a feature that recognizes when the user has entered any profanity. The program will then remind the user to stop using profanity. This feature is used to help keep the chatbot kid friendly and help with overall flow. A sample example of a reply from the chatbot when profanity is entered is “Please do not swear!”.
+
 ## No-match Responses
 
-For user responses that are beyond the scope of understanding of the chatbot, statements like "I'm sorry. I don't understand." and "Sorry, could you repeat yourself?" are made to prompt the user to make an appropriate response (ie. that the chatbot would understand).
+For user inputs beyond the scope of understanding of the chatbot, automated responses like "I'm sorry. I don't understand." and "Sorry, could you repeat yourself?" are printed to as a 'catch' feature for such exceptions.
 
 ## Stemming
 
-Stemming reduces inflected words down to their root words to allow related words to map to the same stem. For instance, the words "played", "playing", "plays" all map to the stem "play". The algorithm used to implement this is the Porter Stemmer algorithm adapted from https://tartarus.org/martin/PorterStemmer/.
+Stemming reduces inflected words entered by the user down to their root words to allow related words to map to the same stem. For instance, the words "played", "playing", "plays" all map to the stem "play". The algorithm used to implement this is the Porter Stemmer algorithm adapted from https://tartarus.org/martin/PorterStemmer/.
 
 ## Spell Checker
-
-https://github.com/boyter/java-spelling-corrector/blob/master/src/com/boyter/SpellingCorrector/SpellingCorrector.java
+Spell check is a feature used to attempt any spelling mistakes that the user enters. This feature assumes that the user got the first letter of the word correct, but will change further characters. This feature is important to make sure the user is entering accurate information. An example of this feature is if the user enters “helli”. In this case the program would correct the world to “hello”. Refer to: https://github.com/boyter/java-spelling-corrector/blob/master/src/com/boyter/SpellingCorrector/SpellingCorrector.java
 
 # Limitations
 
