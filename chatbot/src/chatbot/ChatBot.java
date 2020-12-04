@@ -1,4 +1,5 @@
 package chatbot;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,40 +22,33 @@ public class ChatBot {
 			BufferedReader brQuestions = new BufferedReader(new FileReader("textfiles/questions.txt"));
 			BufferedReader brResponses = new BufferedReader(new FileReader("textfiles/responses.txt"));
 			BufferedReader brProfanity = new BufferedReader(new FileReader("textfiles/profanity.txt"));
-			
+
 			String questions = brQuestions.readLine();
-			String responses = brResponses.readLine();		
+			String responses = brResponses.readLine();
 
 			// Initialize Responders
 			while (questions != null && responses != null) {
 				ArrayList<String> additionalWords = new ArrayList<>();
 				String[] q = questions.split("\\|");
 				String[] r = responses.split("\\|");
-				
-				if (!q[0].contentEquals("#")) {
+				if (!(questions.charAt(0) == '#')) {
+					for (String word : q) {
+						additionalWords.addAll(SynonymCheckerJWNL.getSynonyms(word));
+					}
+					String[] newQ = new String[additionalWords.size()];
+					for (int i = 0; i < additionalWords.size(); i++) {
+						newQ[i] = additionalWords.get(i);
+					}
 
-					responders.add(new Responder(q, r));
-
+					if (q[0].equals("*exceptions*")) {
+						exceptionResponder = new Responder(q, r);
+					} else {
+						responders.add(new Responder(newQ, r));
+					}
+					// For next round
+				} else {
+					System.out.println("Line contained #, skipping");
 				}
-				//read next line
-				
-				for (String word:q) {
-					additionalWords.addAll(SynonymCheckerJWNL.getSynonyms(word));
- 				}
-				String[] newQ = new String[additionalWords.size()];
-				for (int i=0; i<additionalWords.size();i++) {
-					newQ[i] = additionalWords.get(i);
-				}
-				
-				
-				if (q[0].equals("*exceptions*")) {
-					exceptionResponder = new Responder(q,r);
-				}
-				else {
-					responders.add(new Responder(newQ, r));
-				}
-				// For next round
-
 				questions = brQuestions.readLine();
 				responses = brResponses.readLine();
 			}
@@ -85,7 +79,7 @@ public class ChatBot {
 	public Responder getResponder(String input) {
 		int max = 0;
 		Responder select = null;
-		
+
 		for (Responder r : responders) {
 			if (r.check(input) > max) {
 				max = r.check(input);
@@ -100,27 +94,26 @@ public class ChatBot {
 	 */
 	public String respond(String input) {
 		try {
-		String[] temp = input.split(" ");
-		for (String s : temp) {
-			// Cusswords filter
-			if (profanityFilter.contains(s)) {
-				return "Please stop cussing.";
+			String[] temp = input.split(" ");
+			for (String s : temp) {
+				// Cusswords filter
+				if (profanityFilter.contains(s)) {
+					return "Please stop cussing.";
+				}
+
+				// Check for POSTagger option
+				if (s.toLowerCase().contains("tagthis")) {
+					String response = input.replace("tagthis", "");
+					POSTagger tagger = new POSTagger(response);
+					return tagger.getPOSTags();
+				}
 			}
-			
-			// Check for POSTagger option
-			if (s.toLowerCase().contains("tagthis")) {
-				String response = input.replace("tagthis", "");
-				POSTagger tagger = new POSTagger(response);
-				return tagger.getPOSTags();
-			}
-		}
-		Responder r = getResponder(input.toLowerCase());
-		if (r != null)
-			return r.respond();
-		else
-			return exceptionResponder.respond(); // if no matches are found
-		}
-		catch (Exception e) {
+			Responder r = getResponder(input.toLowerCase());
+			if (r != null)
+				return r.respond();
+			else
+				return exceptionResponder.respond(); // if no matches are found
+		} catch (Exception e) {
 			System.out.println("Respond method error.");
 			return "I don't know what just happened. My response function broke down.";
 		}
