@@ -1,6 +1,6 @@
 # Basic Functionality ############################################
 hi|hello
-who|what|are|you
+who|what|you
 #
 # Basketball Related Questions############################################
 basketball|best|team|championship
