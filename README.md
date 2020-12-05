@@ -10,7 +10,8 @@ Our project is a rule-based chatbot that enjoys conversing with you about hockey
 
 ## How to Use
 
-Our chatbot can be used through a simple GUI by running the executable `run-chatbot` jar file. The user enters a response at the bottom of the window and the bot prints its reply accordingly.
+Our chatbot can be used through a simple GUI by running the executable `chatbot` jar file. The user enters a response at the bottom of the window and the bot prints its reply accordingly.
+Alternatively, you can run the Driver.java file in an IDE.
 
 # Structure
 
@@ -30,7 +31,7 @@ Topics of conversation include hockey, basketball and climbing.
 
 ## Synonym Recognition
 
-Takes words retrieved from the text files, and automatically finds common synonyms for keywords with the use of JWNL API.
+Takes words retrieved from the text files, and automatically finds common synonyms for keywords with the use of JWNL API. Helps with recognizing different words which enables better conversation undertandability.
 
 ## Profanity Filter
 
