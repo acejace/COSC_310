@@ -30,7 +30,9 @@ import java.util.Set;
 import net.sf.extjwnl.dictionary.*;
 
 public class SynonymCheckerJWNL {
-
+	/*
+	 * Get synonyms for verbs based on input
+	 */
 	public static ArrayList<String> getMatchingVerbs(Dictionary d, String input) {
 		try {
 			ArrayList<String> matches = new ArrayList<>();
@@ -50,7 +52,9 @@ public class SynonymCheckerJWNL {
 		}
 		return null;
 	}
-
+	/*
+	 * Get synonyms for nouns based on input
+	 */
 	public static ArrayList<String> getMatchingNouns(Dictionary d, String input) {
 		try {
 			ArrayList<String> matches = new ArrayList<>();
@@ -70,7 +74,9 @@ public class SynonymCheckerJWNL {
 		}
 		return null;
 	}
-
+	/*
+	 * Get synonyms for adjectives based on input
+	 */
 	public static ArrayList<String> getMatchingAdjs(Dictionary d, String input) {
 		try {
 			ArrayList<String> matches = new ArrayList<>();
@@ -90,7 +96,9 @@ public class SynonymCheckerJWNL {
 		}
 		return null;
 	}
-
+	/*
+	 * Get synonyms for verbs,nouns and adjectives based on input. Removes duplicate words and returns an ArrayList of synonyms.
+	 */
 	public static ArrayList<String> getSynonyms(String input) throws JWNLException {
 		try {
 			Dictionary d = Dictionary.getDefaultResourceInstance();
@@ -123,9 +131,4 @@ public class SynonymCheckerJWNL {
 		return null;
 	}
 	
-	public static void main(String[] args) throws JWNLException {
-		Dictionary d = Dictionary.getDefaultResourceInstance();
-		ArrayList<String> temp = getSynonyms("best");
-		for (String s: temp) System.out.println(s);
-	}
 }
