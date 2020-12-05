@@ -24,7 +24,7 @@ best|climber|all|time
 name|popular|rock|climber
 favorite|like best|rock|climber
 daniel|magnus|how|hard
-random|fact|rock|climbing|fun
+random|fact|rock|climb
 #
 # Others ############################################
 *exceptions*
