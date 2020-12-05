@@ -6,7 +6,7 @@ who|what|you
 basketball|best|team|championship
 favourite|like|best|basketball|team|which
 random|fact|basketball|fun
-when|where|nba|founded|established
+when|where|nba|founded|establish
 name|popular|basketball|nba|player|best
 #
 # Hockey Related ############################################
@@ -15,7 +15,7 @@ favourite|like best|hockey|team
 canucks|coach|who
 canucks|captain|who
 random|fact|hockey|fun
-when|where|nhl|founded|established
+when|where|nhl|founded|establish
 best|hockey|player|all|time
 what|hockey|team|funny|interesting|name
 #
@@ -24,7 +24,7 @@ best|climber|all|time
 name|popular|rock|climber
 favorite|like best|rock|climber
 daniel|magnus|how|hard
-random|fact|rock|climbing|fun
+random|fact|rock|climb
 #
 # Others ############################################
 *exceptions*

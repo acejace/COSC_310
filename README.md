@@ -30,9 +30,10 @@ Topics of conversation include hockey, basketball and climbing.
 
 ## Synonym Recognition
 
-Takes words retrieved from the text files, and automatically finds common synonyms for keywords with the use of JWNL api.
+Takes words retrieved from the text files, and automatically finds common synonyms for keywords with the use of JWNL API.
 
 ## Profanity Filter
+
 Profanity filter is a feature that recognizes when the user has entered any profanity. The program will then remind the user to stop using profanity. This feature is used to help keep the chatbot kid friendly and help with overall flow. A sample example of a reply from the chatbot when profanity is entered is “Please do not swear!”.
 
 ## No-match Responses
@@ -44,7 +45,16 @@ For user inputs beyond the scope of understanding of the chatbot, automated resp
 Stemming reduces inflected words entered by the user down to their root words to allow related words to map to the same stem. For instance, the words "played", "playing", "plays" all map to the stem "play". The algorithm used to implement this is the Porter Stemmer algorithm adapted from https://tartarus.org/martin/PorterStemmer/.
 
 ## Spell Checker
+
 Spell check is a feature used to attempt any spelling mistakes that the user enters. This feature assumes that the user got the first letter of the word correct, but will change further characters. This feature is important to make sure the user is entering accurate information. An example of this feature is if the user enters “helli”. In this case the program would correct the world to “hello”. Refer to: https://github.com/boyter/java-spelling-corrector/blob/master/src/com/boyter/SpellingCorrector/SpellingCorrector.java
+
+## Named Entity Recognition (NER) - Name Detector
+
+If names appear in the user's input, the chatbot uses tools and the NER-Person model from the OpenNLP library to detect them. The required libraries and models were obtained from https://opennlp.apache.org/download.html and http://opennlp.sourceforge.net/models-1.5/ respectively.
+
+## Part-of-speech (POS) Tagging
+
+Users can opt to display the POS tagging of their inputs if the keyword "TagThis" is entered alongside the statement they wish to be POS-tagged. The POS tagging model was provided by OpenNLP and may not be 100% accurate - as with all POS tagging models at the time of this writing. The required libraries and models were obtained from https://opennlp.apache.org/download.html and http://opennlp.sourceforge.net/models-1.5/ respectively.
 
 # Limitations
 
